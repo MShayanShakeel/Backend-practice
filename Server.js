@@ -1,8 +1,26 @@
-const http = require('http');
+// const http = require('http');
+// const apiData = require('./Data');
 
-const ServerData = ((req , res ) => {
-    res.write("<h1>server is runnig ! </h1>")
-    res.end();
-})
+// const ServerDataRunning = ((req , res ) => {
+//     res.writeHead(200 , {'Content-Type' : 'application\json'}),
+//     res.write(JSON.stringify(apiData));
+//     res.end();
+// })
 
-http.createServer(ServerData).listen(5000);
+// http.createServer(ServerDataRunning).listen(5000)
+const fs = require('fs');
+const { argv } = require('process');
+
+const fileInput = process.argv;
+
+if(fileInput[2] === "Add"){
+
+    fs.writeFileSync(fileInput[3], fileInput[4])
+}
+else if(fileInput[2] === "Remove"){
+    fs.unlinkSync(fileInput[3] , fileInput[4])
+}
+else{
+  console.log("Invalid Input !")
+}
+// console.log(fileInput);
